@@ -3,32 +3,35 @@ const userModel = require("../models/usermodel.js");
 const bcrypt = require("bcrypt");
 
 const signUp = async (req, res) => {
+  // creating the controller
   try {
-    let { name, email, password } = req.body;
-    name = name.trim();
+    let { name, email, password } = req.body; //  destructuring the req    name = name.trim();
     email = email.trim();
     password = password.trim();
 
     if (!name || !email || !password) {
+      // validating the empty and and no fields
       return res.status(400).json({
         message: "all filed should be filled",
       });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 11);
+    const hashedPassword = await bcrypt.hash(password, 11); // hashing and salting the password by bcrypting
 
     const user = userModel.create({
       name,
       email,
-      password: hashedPassword,
+      password: hashedPassword, // setting the hashed password
     });
 
     res.status.json({
+      // user is created
       message: "the user is created",
       data: user,
       success: true,
     });
   } catch (error) {
+    // throw the error
     res.status(500).json({
       message: "internal server error",
       error: error.message,
@@ -36,3 +39,5 @@ const signUp = async (req, res) => {
     });
   }
 };
+
+module.exports = signUp;
