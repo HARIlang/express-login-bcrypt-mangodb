@@ -21,8 +21,13 @@ password:{
     required:'true , "password is required"',
 }
 
-});
+},
+{
+    timestamp:true
+}
 
-const userModel = mongoose.model(userSchema,'user');
+);
 
-module.exports = userModel;
+const userModel = mongoose.model('user',userSchema);
+
+module.exports = userModel

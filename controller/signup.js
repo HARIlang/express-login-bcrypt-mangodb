@@ -16,6 +16,15 @@ const signUp = async (req, res) => {
       });
     }
 
+    const existingUser = userModel.findOne({email});
+
+    if(existingUser){              // check the existing user by the email
+
+       return res.status(409).json({
+        message:'the user is already exist in given email',
+        success:false
+       });}
+
     const hashedPassword = await bcrypt.hash(password, 11); // hashing and salting the password by bcrypting
 
     const user = userModel.create({
@@ -24,7 +33,7 @@ const signUp = async (req, res) => {
       password: hashedPassword, // setting the hashed password
     });
 
-    res.status.json({
+    res.status(200).json({
       // user is created
       message: "the user is created",
       data: user,
@@ -40,4 +49,4 @@ const signUp = async (req, res) => {
   }
 };
 
-module.exports = signUp;
+module.exports = {signUp};
