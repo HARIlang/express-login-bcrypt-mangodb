@@ -1,10 +1,10 @@
-const  express = require('express')
+const  express = require('express')   
 const app = express()
 const port = 3000
 
-app.use(express.json());
+app.use(express.json()); // 
 
-require('dotenv').config();
+require('dotenv').config();  //
 
 const dbConnection = require('./database/db.js');
 const router = require('./router/userroute.js');
@@ -12,7 +12,7 @@ const router = require('./router/userroute.js');
 
 dbConnection();
 
-app.use('/api/user',router)
+app.use('/api/user',router);
 
 
 
