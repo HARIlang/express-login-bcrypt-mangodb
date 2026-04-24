@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+        <form onsubmit="login(event)">
+            <table>
+                <tr>
+                    <td>email</td>
+                    <td><input type="email"  id="email"></td>
+                </tr>
+                <tr>
+                    <td>password</td>
+                    <td><input type="password"  id="password"></td>
+                </tr>
+                 <tr>
+          <tr> <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> </tr>
+        </tr>
+                  <tr>
+                    <td><input type="submit"></td>
+                    <td><input type="reset"></td>
+                </tr>
+            </table>
+            <a href="signup.html">don't have a account , signup here</a>
+        </form>
+    
+
+
+
+    <script>
+
+            const login  = async()=>{
+
+
+
+
+
+
+            try{
+                const login_url ='http://localhost:5000/api/login'
+                  
+                   const name = document.getElementById('password').value.trim();
+                   const password = document.getElementById('password').value.trim();
+                   
+
+               
+            }
+
+            catch{
+
+
+
+
+            }
+
+
+
+
+
+
+
+            }
+
+
+
+
+
+    </script>
+
+</body>
+</html>
