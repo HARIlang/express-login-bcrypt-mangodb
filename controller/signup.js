@@ -83,7 +83,7 @@ const logIn = async (req, res) => {
       });
     }
 
-    const user = await userModel.findOne({email})     // find the user by email
+    const user = await userModel.findOne({email}).select('+password')     // find the user by email
 
     if(!user){                                 // if user not found in the given email
      return res.status(404).json({
@@ -113,6 +113,7 @@ const logIn = async (req, res) => {
       message: "internal server error",
       error: error.message,
       success: false,
+      stack : error.stack,
     });
   }
 };
