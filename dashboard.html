@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+</head>
+
+<body>
+  <h1>User Dashboard</h1>
+
+  <p id="name"></p>
+  <p id="email"></p>
+     <button onclick="logout()">logout</button>
+  <script>
+
+   const logout = () => {
+    const isConfirmed = confirm("Are you sure you want to logout?");
+
+    if (!isConfirmed) return; 
+
+    localStorage.removeItem("user");
+    window.location.href = "login.html";
+  };
+
+    function initDashboard() {
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      if (!user) {
+        window.location.href = "login.html";
+        return; 
+      }
+
+      document.getElementById("name").innerText = "Name: " + user.name;
+      document.getElementById("email").innerText = "Email: " + user.email;
+    }
+
+    
+    initDashboard();
+  </script>
+</body>
+</html>

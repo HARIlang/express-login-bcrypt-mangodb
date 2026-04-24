@@ -105,7 +105,11 @@ const logIn = async (req, res) => {
 
    return res.status(200).json({
         message:`welcome ${user.name}`,
-        success: true
+        success: true,
+        user : {
+          name:user.name,
+          email:user.email
+        }
        })
 
   } catch (error) {

@@ -47,8 +47,11 @@
               });
               
               
-              alert(res.data.message)     // passed : return the response message
+           console.log(res.data.user)
 
+           localStorage.setItem('user',  JSON.stringify(res.data.user));
+
+           window.location.href = 'dashboard.html'
                
             }
 
