@@ -7,7 +7,7 @@
 </head>
 <body>
     
-        <form onsubmit="login(event)">
+        <form onsubmit="login(event)">     // onsubmit event
             <table>
                 <tr>
                     <td>email</td>
@@ -33,37 +33,33 @@
 
     <script>
 
-            const login  = async()=>{
+            const login = async(e)=>{
+                 e.preventDefault();        // preventing form browser refresh
+               try{
+                const login_url ='http://localhost:5000/api/user/login';    // base url api for login
 
-
-
-
-
-
-            try{
-                const login_url ='http://localhost:5000/api/login'
-                  
-                   const name = document.getElementById('password').value.trim();
+                   const email = document.getElementById('email').value.trim();     // assigning value to const variable by id
                    const password = document.getElementById('password').value.trim();
-                   
+                    
+              const res = await axios.post(login_url,{    // passing  the email and  password  to axios / backend
+                email,
+                password
+              });
+              
+              
+              alert(res.data.message)     // passed : return the response message
 
                
             }
 
-            catch{
+            catch(error){      // indicates the backend error
 
-
-
-
+             console.log('FULL ERROR:',error);
+             console.log(error.response.data);
+             console.log(error.response.message);
+             
             }
-
-
-
-
-
-
-
-            }
+   }
 
 
 

@@ -9,7 +9,6 @@
 
   <h1>Signup Page</h1>
 
-  <!-- ✅ FIX: use onsubmit instead of onclick -->
   <form onsubmit="signup(event)">
     <table>
       <tr>
@@ -22,7 +21,7 @@
       <tr>
         <td>Email</td>
         <td>
-          <!-- ✅ FIX: removed duplicate type -->
+       
           <input type="email" id="email" required placeholder="@gmail.com" />
         </td>
       </tr>
@@ -30,7 +29,7 @@
       <tr>
         <td>Password</td>
         <td>
-          <!-- ✅ FIX: removed extra space in id -->
+          
           <input type="password" id="password" required placeholder="password" />
         </td>
       </tr>
@@ -40,7 +39,7 @@
           <td> <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> </td>
         </tr>
         <td>
-          <!-- ✅ FIX: no onclick -->
+         
           <button type="submit">Signup</button>
         </td>
         <td>
@@ -50,31 +49,29 @@
     </table>
         <a href="login.html">already have a account login here</a>
   </form>
-
-  <!-- Axios CDN -->
  
-
   <script>
     async function signup(e) {
-      e.preventDefault(); // 🔥 VERY IMPORTANT
+      e.preventDefault(); 
 
       try {
-        const BASE_URL = "http://localhost:5000/api/user";
+        const BASE_URL = "http://localhost:5000/api/user";    // base url
 
-        const name = document.getElementById("name").value.trim();
+        const name = document.getElementById("name").value.trim();  // trimming and assigning the value by the id for const
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value.trim();
 
-        const res = await axios.post(`${BASE_URL}/signup`, {
+        const res = await axios.post(`${BASE_URL}/signup`, {    // sending the user data to backend / axios
           name,
           email,
           password,
         });
 
-        console.log("User registered:", res.data);
+        console.log("User registered:", res.data);   // passed : 
         alert("Signup successful!");
-
-      } catch (error) {
+        
+        
+      } catch (error) {    // failed : indicates the error
         console.error(error);
         alert(error.response?.data?.message || "Signup failed");
       }
