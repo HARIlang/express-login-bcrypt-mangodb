@@ -42,7 +42,12 @@ const updatePassword = async (req, res) => {
       }
 
    
-    
+    if(!validateNewPassword(newPassword)){
+
+        res.status(400).json({
+             message:'the password should contain at least 6 character , one special character , one uppercase and one lowercase '
+        })
+    }
 
       const isMatch =  await bcrypt.compare(oldPassword,user.password);   // test passed
 
