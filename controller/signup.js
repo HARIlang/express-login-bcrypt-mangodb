@@ -28,7 +28,7 @@ const signUp = async (req, res) => {
 
       return res.status(409).json({
         message: "the user is already exist in given email",
-        success: false,
+        success: false, 
       });
     }
 
