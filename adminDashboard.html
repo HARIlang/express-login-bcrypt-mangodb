@@ -8,6 +8,7 @@
   <body>
     <h1>welcome <span id="admin_name"></span></h1>
     <h3>admin email <span id="admin_email"></span></h3>
+    <button type="button" onclick="logout()" style="color: red;">logout</button>
   </body>
   <script>
     function initDashboard() {
@@ -26,5 +27,21 @@
     }
 
     initDashboard(); // calling the function
+
+      function logout(){
+
+     const confirmation = confirm('are you sure want to logout');
+
+     if(!confirmation){
+        return;
+     }
+
+     localStorage.removeItem('admin');
+     window.location.href = 'adminLogin.html'
+    
+    }
+      
+
+
   </script>
 </html>
