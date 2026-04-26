@@ -18,7 +18,7 @@
                     <td><input type="password"  id="password"></td>
                 </tr>
                  <tr>
-          <tr> <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> </tr>
+          <tr> <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> </tr>  // axios cdn
         </tr>
                   <tr>
                     <td><input type="submit"></td>
@@ -47,11 +47,11 @@
               });
               
               
-           console.log(res.data.user)
+           console.log(res.data.user) // loging the response
 
-           localStorage.setItem('user',  JSON.stringify(res.data.user));
+           localStorage.setItem('user',  JSON.stringify(res.data.user));  // setting the user data in localstorage
 
-           window.location.href = 'dashboard.html'
+           window.location.href = 'dashboard.html' // locating to dashboard after login 
                
             }
 

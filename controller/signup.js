@@ -35,7 +35,7 @@ const signUp = async (req, res) => {
     if (!validatePassword(password)) {
       // validating the password
 
-    return res.status(400).json({
+    return res.status(400).json({  // throw if the password is satisfy the regex
         message:
           "the password should at least 6 characters one uppercase , lowercase and one special character",
         success: false,
@@ -43,7 +43,7 @@ const signUp = async (req, res) => {
     }
 
 
-    const hashedPassword = await bcrypt.hash(password, 11); // hashing and salting the password by bcrypting
+    const hashedPassword = await bcrypt.hash(password, 11); // hashing and salting the password by bcrypt
 
     const user = await userModel.create({
       name,

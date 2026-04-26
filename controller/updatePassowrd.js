@@ -32,7 +32,7 @@ const updatePassword = async (req, res) => {
     }
 
 
-      const user = await userModel.findOne({email}).select('+password');
+      const user = await userModel.findOne({email}).select('+password');  // .select('+password') is used to view the password in the db , where in the schema it was hidden (select:false) 
 
       if(!user){
       return  res.status(404).json({       // test passed
@@ -42,7 +42,7 @@ const updatePassword = async (req, res) => {
       }
 
    
-    if(!validateNewPassword(newPassword)){
+    if(!validateNewPassword(newPassword)){    
 
         res.status(400).json({
              message:'the password should contain at least 6 character , one special character , one uppercase and one lowercase '
