@@ -5,6 +5,7 @@ const cors = require('cors');
 app.use(cors())
 app.use(express.json()); // 
 
+app.use(express.urlencoded({extended:true}));     // to send form data for , used for test apis in backend
 require('dotenv').config();  //
 
 const dbConnection = require('./database/db.js');

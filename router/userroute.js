@@ -3,13 +3,14 @@ const router = express.Router();
 
 const {updatePassword} = require('../controller/updatePassowrd.js')
 const {signUp , logIn} = require('../controller/signup.js');
-const createAdmin = require('../controller/admin.js')
+const {createAdmin,adminLogin} = require('../controller/admin.js')
 
 
 router.post('/signup',signUp);
 router.post('/login',logIn);
 router.put('/updatePass',updatePassword);
 router.post('/admin',createAdmin);
+router.post('/admin/login',adminLogin);
 
 
 module.exports = router
