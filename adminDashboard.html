@@ -1,32 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>welcome <span id="admin_name"></span></h1>
     <h3>admin email <span id="admin_email"></span></h3>
-</body>
-<script>
-    function initDashboard(){
+  </body>
+  <script>
+    function initDashboard() {
+      // loading the dashboard
 
-   const user = JSON.parse(localStorage.getItem('user'));
+      const user = JSON.parse(localStorage.getItem("admin")); // getting data from localstorage
 
-   if(!user){
-    
-     window.location.href = 'adminLogin.html';
-     return;
-}
+      if (!user) {
+        // if data is not exist in local storage it will return to admin login
+        window.location.href = "adminLogin.html";
+        return;
+      }
 
-
-document.getElementById('admin_name').innerHTML =user.name
-document.getElementById('admin_email').innerHTML =user.email
-
-
+      document.getElementById("admin_name").innerHTML = user.name; // to display the data from the backend
+      document.getElementById("admin_email").innerHTML = user.email;
     }
 
-    initDashboard();
-</script>
+    initDashboard(); // calling the function
+  </script>
 </html>

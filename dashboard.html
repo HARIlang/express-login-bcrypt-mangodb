@@ -1,45 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Dashboard</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+  </head>
 
-<body>
-  <h1>User Dashboard</h1>
+  <body>
+    <h1>User Dashboard</h1>
 
-  <p id="name"></p>
-  <p id="email"></p>
-     <button onclick="logout()">logout</button>
+    <p id="name"></p>
+    <p id="email"></p>
+    <button onclick="logout()">logout</button>
 
+    <br />
+    <a href="updatePassword.html">click here to change the password</a>
+    <script>
+      const logout = () => {
+        const isConfirmed = confirm("Are you sure you want to logout?");
 
-   <br>
-     <a href="updatePassword.html">click here to change the password</a>
-  <script>
+        if (!isConfirmed) return;
 
-   const logout = () => {
-    const isConfirmed = confirm("Are you sure you want to logout?");
+        localStorage.removeItem("user");
+        window.location.href = "login.html";  // logout function
+      };
 
-    if (!isConfirmed) return; 
+      function initDashboard() {
+        const user = JSON.parse(localStorage.getItem("user"));
 
-    localStorage.removeItem("user");
-    window.location.href = "login.html";
-  };
+        if (!user) {
+          window.location.href = "login.html";     // if user is null / it will redirect to login.html
+          return;
+        }
 
-    function initDashboard() {
-      const user = JSON.parse(localStorage.getItem("user"));
-
-      if (!user) {
-        window.location.href = "login.html";
-        return; 
+        document.getElementById("name").innerText = "Name: " + user.name;
+        document.getElementById("email").innerText = "Email: " + user.email;
       }
 
-      document.getElementById("name").innerText = "Name: " + user.name;
-      document.getElementById("email").innerText = "Email: " + user.email;
-    }
-
-    
-    initDashboard();
-  </script>
-</body>
+      initDashboard();
+    </script>
+  </body>
 </html>

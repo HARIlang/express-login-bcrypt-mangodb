@@ -1,69 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>admin login</h1>
     <form onsubmit="adminLogin(event)">
-        <table>
+      <table>
         <tr>
-            <td>email</td>
-            <td><input type="email" required id ='email'></td>
+          <td>email</td>
+          <td><input type="email" required id="email" /></td>
         </tr>
         <tr>
-            <td>password</td>
-            <td><input type="text" required id ='password'></td>
+          <td>password</td>
+          <td><input type="text" required id="password" /></td>
         </tr>
         <tr>
-            <td><script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script></td>
+          <td>
+            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+          </td>
         </tr>
         <tr>
-            <td><button type="submit">login</button></td>
-            <td><button type="reset">cancel</button></td>
+          <td><button type="submit">login</button></td>
+          <td><button type="reset">cancel</button></td>
         </tr>
-    </table>
-    <a href="home page">home</a>
+      </table>
+      <a href="home page">home</a>
     </form>
 
-     <script>
+    <script>
+      const adminLogin = async (e) => {       
+        try {
+          e.preventDefault();     // prevent the refresh of the page wile submit
 
-        const adminLogin  = async(e)=> {
+          const email = document.getElementById("email").value.trim();       // the the value of the input to a const          
+          const password = document.getElementById("password").value.trim();              
+          
+          const admin_url = "http://localhost:5000/api/user/admin/login";  // base url for apu call
 
-     try{
+          const res = await axios.post(admin_url, {
+            email,
+            password,      // sending email and password 
+          });
+          
 
-          e.preventDefault();
-       
-       const email = document.getElementById('email').value.trim();
-       const password = document.getElementById('password').value.trim();
-       
+          localStorage.setItem("admin", JSON.stringify(res.data.admin));    // setting the data in the local storage
+          //    console.log(res.data);
 
-
-       const admin_url ='http://localhost:5000/api/user/admin/login';
-
-       const res = await axios.post(admin_url,{
-        email,
-        password
-       });
-     
-       localStorage.setItem('user',JSON.stringify(res.data.admin));
-       
-    //    console.log(res.data);
-
-      window.location.href = 'adminDashboard.html'
-     }
-     catch(error){
-        console.log(error.response);
-        
-     }
-}
-
-
-
-     </script>
-
-
-</body>
+          window.location.href = "adminDashboard.html"; //redirect to dashboard
+        } catch (error) {
+          console.log(error.response.data);
+        }
+      };
+    </script>
+  </body>
 </html>

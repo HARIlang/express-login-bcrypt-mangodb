@@ -77,7 +77,7 @@ const adminLogin = async (req, res) => { // admin login module
     success: true,
     admin:{
       name: admin.name,
-      email: admin.email,
+      email: admin.email,    // sending the email and name of admin to store in local storage
     },
   });
  }
@@ -86,6 +86,8 @@ const adminLogin = async (req, res) => { // admin login module
     res.status(500).json({
         message:'internal server error form login admin module',
         status:false,
+        error:error.stack
+        
 
     })
  }
