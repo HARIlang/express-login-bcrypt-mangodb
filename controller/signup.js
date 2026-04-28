@@ -106,7 +106,7 @@ const logIn = async (req, res) => {
       });
     }
 
-    user.isLogin = true; // if it's match it's set islogin as true
+    await userModel.updateOne({email},{$set:{isLogin:true}}) // if it's match it's set islogin as true
     await user.save();
     return res.status(200).json({
       message: `welcome ${user.name}`,

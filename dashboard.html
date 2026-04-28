@@ -16,26 +16,11 @@
     <br />
     <a href="updatePassword.html">click here to change the password</a>
     <script>
-      const logout = async () => {
-
-            const res = await axios.
-    
-
-
-
-        const isConfirmed = confirm("Are you sure you want to logout?");
-
-        if (!isConfirmed) return;
-
-        localStorage.removeItem("user");
-        window.location.href = "login.html";  // logout function
-      };
+      const user = JSON.parse(localStorage.getItem("user"));
 
       function initDashboard() {
-        const user = JSON.parse(localStorage.getItem("user"));
-
         if (!user) {
-          window.location.href = "login.html";     // if user is null / it will redirect to login.html
+          window.location.href = "login.html"; // if user is null / it will redirect to login.html
           return;
         }
 
@@ -44,6 +29,26 @@
       }
 
       initDashboard();
+
+      const logout = async () => {
+        try {
+           const isConfirmed = confirm("Are you sure you want to logout?");
+ 
+            if (!isConfirmed) return;
+
+          const base_url = "http://localhost:5000/api/user/logout";
+
+          const res = await axios.post(base_url, {
+            email: user.email,
+          });
+
+         
+          localStorage.removeItem("user");
+          window.location.href = "login.html"; // logout function
+        } catch (error) {
+          error;
+        }
+      };
     </script>
   </body>
 </html>
