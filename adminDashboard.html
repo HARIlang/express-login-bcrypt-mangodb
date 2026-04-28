@@ -11,9 +11,12 @@
     <h3>admin email <span id="admin_email"></span></h3>
     <button type="button" onclick="logout()" style="color: red">logout</button>
 
-    <button>refresh 🔁</button>
+    <button onclick="ViewUsers()">refresh 🔁</button>
     <p id="noUser"></p>
-    <table id="viewUser" border="1" style="border-collapse: collapse"></table>
+    <table>
+      
+      <table id="viewUser" border="1" style="border-collapse: collapse"></table>
+    </table>
   </body>
   <script>
     function initDashboard() {
@@ -66,6 +69,16 @@
      <td style="padding:7px; color:${user.isLogin ? "green" : "red"};">
   ${user.isLogin ? "online" : "offline"}
 </td>
+<td style="padding:7px">${user.lastLoginAt? new Date(user.lastLoginAt).toLocaleString("en-IN", {
+  weekday: "long",     // Monday
+  year: "numeric",     // 2026
+  month: "long",       // April
+  day: "numeric",      // 30
+  hour: "2-digit",     // 09
+  minute: "2-digit",   // 45
+  second: "2-digit",   // 12
+  hour12: true         // AM / PM
+}):"never"}</td>
       </tr>`,
           )
           .join("");

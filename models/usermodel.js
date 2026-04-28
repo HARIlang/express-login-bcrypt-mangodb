@@ -17,19 +17,23 @@ const userSchema = mongoose.Schema(
     password: {
       type: String,
       required: 'true , "password is required"',
-      select:false
+      select: false,
     },
-    isLogin:{
-      type:Boolean,
-      required:true,
-      default:false
-    }
+    isLogin: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    lastLoginAt: {
+      type: Date,
+      default: null,
+    },
   },
   {
     timestamp: true,
   },
 );
 
-const userModel = mongoose.model("user", userSchema);   //('collection name', schema)
+const userModel = mongoose.model("user", userSchema); //('collection name', schema)
 
 module.exports = userModel;
