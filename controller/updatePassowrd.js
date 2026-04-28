@@ -72,7 +72,7 @@ const updatePassword = async (req, res) => {
 
   } catch (error) {
     res.status(500).json({
-      message: "internal server error",
+      message: "internal server error form update Password",
       error: error.message,
       success: false,
     });

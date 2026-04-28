@@ -93,4 +93,34 @@ const adminLogin = async (req, res) => { // admin login module
  }
 };
 
-module.exports = { createAdmin, adminLogin };
+
+const viewUsers = async (req,res) =>{     // to view the users in frontend;
+
+  try{
+       const users = await userModel.find();   
+
+     if(!users){
+
+       res.status(400).json({
+        message:'there are no users',
+        success:false
+       });
+       
+
+
+     }
+     return res.status(200).json({
+      message:'the users are',
+      data:users
+     }) 
+
+  }
+  catch(error){
+     res.status(500).json({
+       message:'internal server error',
+      success:false 
+     })
+  }
+}
+
+module.exports = { createAdmin, adminLogin ,viewUsers };
