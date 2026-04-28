@@ -23,11 +23,6 @@ const adminSchema = mongoose.Schema({
     
   }
 
-
-     
-
-
-
 },
 
 

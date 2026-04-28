@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
 
   <body>
@@ -15,7 +16,13 @@
     <br />
     <a href="updatePassword.html">click here to change the password</a>
     <script>
-      const logout = () => {
+      const logout = async () => {
+
+            const res = await axios.
+    
+
+
+
         const isConfirmed = confirm("Are you sure you want to logout?");
 
         if (!isConfirmed) return;

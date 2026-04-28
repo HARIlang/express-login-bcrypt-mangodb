@@ -3,11 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Document</title>
   </head>
   <body>
     <h1>welcome <span id="admin_name"></span></h1>
     <h3>admin email <span id="admin_email"></span></h3>
+
+    <button>refresh 🔁</button>
+    <p id="noUser"></p>
+    <table id="viewUser"></table>
   </body>
   <script>
     function initDashboard() {
@@ -26,5 +31,34 @@
     }
 
     initDashboard(); // calling the function
+
+    const ViewUsers = async () => {
+      try {
+        const base_url = "http://localhost:5000/api/user/admin/viewusers";
+
+        const res = await axios.get(base_url);
+
+        const users = res?.data?.data;
+        if (users.length === 0) {
+          document.getElementById("noUser").innerHTML = `<p> no users </p>`;
+          return;
+        }
+
+        document.getElementById("viewUser").innerHTML = users
+          .map(
+            (user) =>
+              `<tr>
+      <td>${user.name}</td>
+      <td>${user.email}</td>
+      </tr>`
+          )
+          .join("");
+
+        console.log(res?.data?.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    ViewUsers();
   </script>
 </html>
