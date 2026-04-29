@@ -11,10 +11,12 @@ require('dotenv').config();  //
 const dbConnection = require('./database/db.js');
 const router = require('./router/userroute.js');
 
+const {globalLimiter} =  require('./middlewares/rateLimiter.js');
+
 
 dbConnection();
 
-app.use('/api/user',router);
+app.use('/api/user',globalLimiter,router);
 
 
 
