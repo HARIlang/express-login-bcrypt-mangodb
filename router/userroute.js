@@ -8,8 +8,8 @@ const {createAdmin,adminLogin , viewUsers} = require('../controller/admin.js')
 const {loginLimit} = require('../middlewares/rateLimiter.js')
 
 
-router.post('/signup',signUp);
-router.post('/login',loginLimit,logIn);
+router.post('/signup',loginLimit,signUp);   // using same login limiter for signup because of same limit as login
+router.post('/login',loginLimit,logIn);    // login limiter 
 router.post('/logout',logOut);
 router.put('/updatePass',updatePassword);
 router.post('/admin',createAdmin);
