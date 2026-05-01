@@ -1,10 +1,10 @@
 const { json } = require("express/lib/response.js");
-const userModel = require("../models/usermodel.js");
+const userModel = require("../models/usermodel.js"); //using user model we created
 
 const bcrypt = require("bcrypt"); //
 
 const validatePassword = (password) => {
-  const regex = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/; //
+  const regex = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/; // regular expression for the user password
   return regex.test(password);
 };
 
@@ -52,6 +52,7 @@ const signUp = async (req, res) => {
       password: hashedPassword, // setting the hashed password
     });
 
+    await user.save();
     return res.status(200).json({
       // user is created
       message: "the user is created",
