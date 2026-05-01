@@ -13,7 +13,8 @@ packages used :
         dotenv           cmd: npm i dotenv         To use environmental variable in project
         cors@2.8.6       cmd: npm i cors           To used for api sharing data from client to server and server to client
         mongoose@9.5.0   cmd: npm i mongoose       To use database and to create model/schema of users 
-        bcrypt@6.0.0     cmd :npm i bcrypt         Used for security purpose (ensuring the password of the user is safe)
+        bcrypt@6.0.0     cmd :npm i bcrypt         Used for security purpose (ensuring the password of the user is safe);
+express-rate-limit@8.4.1 cmd :npm i express-rate-limit    to limit the request 
    
 
 front-end :
